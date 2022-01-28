@@ -15,7 +15,10 @@ class twitterClient {
   /*
   ************** 3 étapes : authenfication, récupération des messages spécifiques et construction d''un client hbc
    */
-private  val trace_hbc = LogManager.getLogger("console")
+ private val trace_hbc = LogManager.getLogger("console")
+ private val serveursKafka : String = ""
+ private val topicKafka : String = ""
+
   /*
   *************** 4 élements essentiels pour authentification Twitter sont les suivants en variables
    */
@@ -54,7 +57,7 @@ private  val trace_hbc = LogManager.getLogger("console")
     try {
       while (!client_HBC_complete.isDone) {
         val tweet = queue.poll(300, TimeUnit.SECONDS)
-        getProducerKafka(tweet)
+        getProducerKafka(tweet, topicKafka, serveursKafka)
       }
 
     }catch {
