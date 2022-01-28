@@ -12,15 +12,13 @@ import org.apache.kafka.common.security.auth.SecurityProtocol
 object producerKafka /* extends App */ {
   private val trace_kafka = LogManager.getLogger("console")
 
-  def getProducerKafka (message : String): Unit ={
+  def getProducerKafka (message : String, topic : String, serversIP : String): Unit ={
     val props = new Properties()
-    props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "")
+    props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, serversIP)
     props.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG,"org.apache.kafka.common.serialization.StringDeserializer")
     props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, "org.apache.kafka.common.serialization.StringDeserializer")
     props.put(ProducerConfig.ACKS_CONFIG, "all")
     props.put("security.protocol", "SASL_PLAINTEXT")
-
-    val topic : String = ""
 
     /*
     ******************* Gestionnaire d''erreurs *******************
