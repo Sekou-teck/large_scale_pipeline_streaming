@@ -10,14 +10,13 @@ import producerKafka._
 import scala.collection.JavaConverters._
 import org.apache.log4j.{LogManager, Logger}
 
-class twitterClient {
+object twitterClient {
 
   /*
   ************** 3 étapes : authenfication, récupération des messages spécifiques et construction d''un client hbc
    */
  private val trace_hbc = LogManager.getLogger("console")
- private val serveursKafka : String = ""
- private val topicKafka : String = ""
+
 
   /*
   *************** 4 élements essentiels pour authentification Twitter sont les suivants en variables
@@ -27,7 +26,7 @@ class twitterClient {
   Création d'une méthode pour prendre les élements d'authentification et de location en compte
    */
 
-  def getClient_Twitter(token: String, consumerSecret: String, consumerKey: String, tokenSecret: String, town_list: Location): Unit = {
+  def getClient_Twitter(token: String, consumerSecret: String, consumerKey: String, tokenSecret: String, town: Location, topicKafka : String, server_kafka : String ): Unit = {
     val token = ""
     val consumerSecret = ""
     val consumerKey = ""
@@ -38,7 +37,7 @@ class twitterClient {
     val auth : Authentication = new OAuth1(consumerKey, consumerSecret, token, tokenSecret)
 
     val endp : StatusesFilterEndpoint = new StatusesFilterEndpoint()
-    endp.locations(List(town_list).asJava)
+    endp.locations(List(town).asJava)
     /*
     *************** Récupération de la data *********************
      */
@@ -57,7 +56,7 @@ class twitterClient {
     try {
       while (!client_HBC_complete.isDone) {
         val tweet = queue.poll(300, TimeUnit.SECONDS)
-        getProducerKafka(tweet, topicKafka, serveursKafka)
+        getProducerKafka(tweet, topicKafka, server_kafka, town)
       }
 
     }catch {
