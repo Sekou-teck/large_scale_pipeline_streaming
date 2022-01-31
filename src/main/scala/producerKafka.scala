@@ -4,15 +4,18 @@ import org.apache.kafka.clients.producer.ProducerConfig._
 import org.apache.kafka.common.serialization._
 import org.apache.log4j.{LogManager, Logger}
 import java.util._
+
+import com.twitter.hbc.core.endpoint.Location
 import org.apache.kafka.common.security.auth.SecurityProtocol
 
 /*
   ************* 'Extends App' me permet de ne plus passer par une classe main. */
 
 object producerKafka /* extends App */ {
+
   private val trace_kafka = LogManager.getLogger("console")
 
-  def getProducerKafka (message : String, topic : String, serversIP : String): Unit ={
+  def getProducerKafka (message : String, topic : String, serversIP : String, ville : Location): Unit ={
     val props = new Properties()
     props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, serversIP)
     props.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG,"org.apache.kafka.common.serialization.StringDeserializer")
@@ -26,7 +29,7 @@ object producerKafka /* extends App */ {
     try
       {
         val twitterProducer = new KafkaProducer[String, String](props)
-        val twitterRecord = new ProducerRecord[String, String](topic, message)
+        val twitterRecord = new ProducerRecord[String, String](topic, ville.toString, message)
         twitterProducer.send(twitterRecord)
       }
     catch {

@@ -11,6 +11,7 @@ import org.apache.spark.streaming.kafka010.ConsumerStrategies.Subscribe
 import org.apache.spark.streaming.{Seconds, StreamingContext}
 import org.apache.spark.streaming.kafka010.{CanCommitOffsets, HasOffsetRanges, KafkaUtils}
 import org.apache.spark.streaming.kafka010.LocationStrategies.PreferConsistent
+import Launcher._
 /*
 Ce module comporte :
     ==> construction de Spark Streaming = pour consommer les données des clusters ;
@@ -38,16 +39,17 @@ object KPI_Streaming {
   )
 
   // Ce sont les paramètres de Spark Consumer client que l'on a besoin pour le connecter à Kafka.
-  private val bootStrapServers : String = ""
-  private val consumerGroupId : String = ""
-  private val consumerReadOrder : String = "readOrder"
+  private val bootStrapServers : String = Launcher.server_kafka
+  private val consumerGroupId : String = Launcher.groupId
+  private val consumerReadOrder : String = Launcher.readOrder
+
   // private val kerberosName : String = ""
   private val batchDuration  = 300
-  private val topics : Array[String] = Array("")
-  private val mySQLHost = ""
-  private val mySQLUser = ""
-  private val mySQLPwd = ""
-  private val mySQLDatabase = ""
+  private val topics : Array[String] = Array(Launcher.topic_lecture)
+  private val mySQLHost = Launcher.mySQLHost
+  private val mySQLUser = Launcher.mySQLUser
+  private val mySQLPwd = Launcher.mySQLPwd
+  private val mySQLDatabase = Launcher.mySQLDatabase
 
   private var logger : Logger = LogManager.getLogger("Log_Console")
   var ss : SparkSession = null
@@ -187,3 +189,5 @@ val df_kpi = ss.sql("""
   }
 
 }
+
+// SparkLauncher = Deploiement en PROD Kafka Consumer : il se fait en variablissan les paramètres et au format .sh
