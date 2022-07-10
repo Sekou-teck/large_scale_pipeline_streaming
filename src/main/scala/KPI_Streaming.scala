@@ -35,10 +35,12 @@ object KPI_Streaming {
     StructField("Zipcode", StringType, true),
     StructField("ZipCodeType", StringType, true),
     StructField("City", StringType, true),
-    StructField("State", StringType, true))
+    StructField("State", StringType, true)
   )
 
-  // Ce sont les paramètres de Spark Consumer client que l'on a besoin pour le connecter à Kafka.
+  )
+
+  // Ce sont les paramètres de Spark Consumer, client que l'on a besoin pour le connecter à Kafka.
   private val bootStrapServers : String = Launcher.server_kafka
   private val consumerGroupId : String = Launcher.groupId
   private val consumerReadOrder : String = Launcher.readOrder
@@ -97,7 +99,7 @@ object KPI_Streaming {
           import s_session.implicits._
           val df_messages = record_kafka.toDF("kafka_object") // toDF est valable avec import implicits
 
-          // il formater le nom des colonnes de Json afin d'avoir la tabulation dans le DF
+          // il faut formater le nom des colonnes de Json afin d'avoir la tabulation dans le DF
 
           if(df_messages.count() > 0) {
 
@@ -139,7 +141,7 @@ object KPI_Streaming {
     }
 
   }
-  // Initialisation des certains paramètres :
+  // Initialisation de certains paramètres :
 
   def getSparkStreamingContext(duree_batch : Int, env : Boolean) : StreamingContext = {
     logger.info("initialisation du contexte Spark Streaming")
@@ -190,4 +192,4 @@ val df_kpi = ss.sql("""
 
 }
 
-// SparkLauncher = Deploiement en PROD Kafka Consumer : il se fait en variablissan les paramètres et au format .sh
+// SparkLauncher = Déploiement en PROD Kafka Consumer : il se fait en variablissant les paramètres et au format .sh

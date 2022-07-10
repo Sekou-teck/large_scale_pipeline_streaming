@@ -11,7 +11,7 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <kafka.clients.version>2.1.0</kafka.clients.version>
-        <log4J.version>2.13.3</log4J.version>
+        <log4J.api.version>2.13.3</log4J.api.version>
         <maven.compiler.plugin>3.8.1</maven.compiler.plugin>
         <jdk.version>1.8</jdk.version>
         <scala.langage.version>2.11.8</scala.langage.version>
