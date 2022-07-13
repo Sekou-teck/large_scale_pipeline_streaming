@@ -51,19 +51,19 @@ object SparkBigData {
       .format("com.databricks.spark.csv")
       .option("delimiter", ",")
       .option("header", "true")
-      .csv("F:\\Mes publications\\Mes publications\\Complete\\formation Spark Big Data\\Ressources\\Data frame\\2010-12-06.csv")
+      .csv("C:\\Users\\Aissata SANO_2\\Desktop\\AISSATA\\Aissata sano\\Sekouba FOFANA\\Documents\\FORMATION\\2010-12-06.csv")
 
     val df_gp = session_s.read
       .format("csv")
       .option("header", "true")
       .option("inferSchema", "true")
-      .load("F:\\Mes publications\\Mes publications\\Complete\\formation Spark Big Data\\Ressources\\Data frame\\csvs\\")
+      .load("C:\\Users\\Aissata SANO_2\\Desktop\\AISSATA\\Aissata sano\\Sekouba FOFANA\\Documents\\FORMATION\\csvs\\")
 
     val df_gp2 = session_s.read
       .format("csv")
       .option("header", "true")
       .option("inferSchema", "true")
-      .load("F:\\Mes publications\\Mes publications\\Complete\\formation Spark Big Data\\Ressources\\Data frame\\2010-12-06.csv", "F:\\Mes publications\\Mes publications\\Complete\\formation Spark Big Data\\Ressources\\Data frame\\2011-12-08.csv")
+      .load("C:\\Users\\Aissata SANO_2\\Desktop\\AISSATA\\Aissata sano\\Sekouba FOFANA\\Documents\\FORMATION\\2010-12-06.csv", "C:\\Users\\Aissata SANO_2\\Desktop\\AISSATA\\Aissata sano\\Sekouba FOFANA\\Documents\\FORMATION\\2011-12-08.csv")
 
     // df_gp2.show(7)
     // println("df_gp count : "+ df_gp.count() + "  df_group2 count : " + df_gp2.count())
@@ -99,7 +99,7 @@ object SparkBigData {
       .option("delimiter", "\t")
       .option("header", "true")
       .schema(schema_order)
-      .load("F:\\Mes publications\\Mes publications\\Complete\\formation Spark Big Data\\Ressources\\Data frame\\orders.txt")
+      .load("C:\\Users\\Aissata SANO_2\\Desktop\\AISSATA\\Aissata sano\\Sekouba FOFANA\\Documents\\FORMATION\\orders.txt")
 
     val df_ordersGood =  df_orders.withColumnRenamed("numunits", "numunits_order")
       .withColumnRenamed("totalprice", "totalprice_order")
@@ -108,13 +108,13 @@ object SparkBigData {
       .format("com.databricks.spark.csv")
       .option("delimiter", "\t")
       .option("header", "true")
-      .load("F:\\Mes publications\\Mes publications\\Complete\\formation Spark Big Data\\Ressources\\Data frame\\product.txt")
+      .load("C:\\Users\\Aissata SANO_2\\Desktop\\AISSATA\\Aissata sano\\Sekouba FOFANA\\Documents\\FORMATION\\product.txt")
 
     val df_orderlines = session_s.read
       .format("com.databricks.spark.csv")
       .option("delimiter", "\t")
       .option("header", "true")
-      .load("F:\\Mes publications\\Mes publications\\Complete\\formation Spark Big Data\\Ressources\\Data frame\\orderline.txt")
+      .load("C:\\Users\\Aissata SANO_2\\Desktop\\AISSATA\\Aissata sano\\Sekouba FOFANA\\Documents\\FORMATION\\orderline.txt")
 
     val df_joinOrders =  df_orderlines.join(df_ordersGood, df_ordersGood.col("orderid") === df_orderlines.col("orderid"), "inner")
       .join(df_products, df_products.col("productid") === df_orderlines.col("productid"), Inner.sql )
@@ -125,13 +125,13 @@ object SparkBigData {
       .format("com.databricks.spark.csv")
       .option("delimiter", ",")
       .option("header", "true")
-      .csv("F:\\Mes publications\\Mes publications\\Complete\\formation Spark Big Data\\Ressources\\Data frame\\2010-12-06.csv")
+      .csv("C:\\Users\\Aissata SANO_2\\Desktop\\AISSATA\\Aissata sano\\Sekouba FOFANA\\Documents\\FORMATION\\2010-12-06.csv")
 
     val df_fichier2 = session_s.read
       .format("com.databricks.spark.csv")
       .option("delimiter", ",")
       .option("header", "true")
-      .csv("F:\\Mes publications\\Mes publications\\Complete\\formation Spark Big Data\\Ressources\\Data frame\\2011-01-20.csv")
+      .csv("C:\\Users\\Aissata SANO_2\\Desktop\\AISSATA\\Aissata sano\\Sekouba FOFANA\\Documents\\FORMATION\\2011-01-20.csv")
 
     val df_fichier3 = session_s.read
       .format("com.databricks.spark.csv")
@@ -251,8 +251,8 @@ object SparkBigData {
     val dest_path = new Path("/user/datalake/indexes")
     val ren_src = new Path("/user/datalake/marketing/fichier_reporting.parquet")
     val dest_src = new Path("/user/datalake/massrketing/reporting.parquet")
-    val local_path = new Path("F:\\Mes publications\\Mes publications\\Complete\\formation Spark Big Data\\Ressources\\Data frame\\Ecriture\\parts.csv")
-    val path_local = new Path("F:\\Mes publications\\Mes publications\\Complete\\formation Spark Big Data\\Ressources\\Data frame")
+    val local_path = new Path("C:\\Users\\Aissata SANO_2\\Desktop\\AISSATA\\Aissata sano\\Sekouba FOFANA\\Documents\\FORMATION\\Ecriture\\parts.csv")
+    val path_local = new Path("C:\\Users\\Aissata SANO_2\\Desktop\\AISSATA\\Aissata sano\\Sekouba FOFANA\\Documents\\FORMATION\\")
 
     // lecture des fichiers d'un dossier
     val files_list = fs.listStatus(src_path)
@@ -305,19 +305,19 @@ object SparkBigData {
       }
     }
 
-    rdd3.saveAsTextFile("F:\\Mes publications\\Mes publications\\Complete\\formation Spark Big Data\\Ressources\\rdd.txt")
+    rdd3.saveAsTextFile("C:\\Users\\Aissata SANO_2\\Desktop\\AISSATA\\Aissata sano\\Sekouba FOFANA\\Documents\\FORMATION\\rdd.txt")
 
-    rdd3.repartition(1).saveAsTextFile("F:\\Mes publications\\Mes publications\\Complete\\formation Spark Big Data\\Ressources\\rdd3.txt")
+    rdd3.repartition(1).saveAsTextFile("C:\\Users\\Aissata SANO_2\\Desktop\\AISSATA\\Aissata sano\\Sekouba FOFANA\\Documents\\FORMATION\\rdd3.txt")
 
     rdd3.foreach{l => println(l)}
     rdd3.collect().foreach{l => println(l)}
 
     // création d'un RDD à partir d'une source de données
-    val rdd4 = sc.textFile("F:\\Mes publications\\Mes publications\\Complete\\formation Spark Big Data\\Ressources\\Sources\\textRDD.txt")
+    val rdd4 = sc.textFile("C:\\Users\\Aissata SANO_2\\Desktop\\AISSATA\\Aissata sano\\Sekouba FOFANA\\Documents\\FORMATION\\textRDD.txt")
     println("lecture du contenu du RDD4")
     rdd4.foreach{l => println(l)}
 
-    val rdd5 = sc.textFile("F:\\Mes publications\\Mes publications\\Complete\\formation Spark Big Data\\Ressources\\Sources\\*")
+    val rdd5 = sc.textFile("C:\\Users\\Aissata SANO_2\\Desktop\\AISSATA\\Aissata sano\\Sekouba FOFANA\\Documents\\FORMATION\\*")
     println("lecture du contenu du RDD5")
     rdd5.foreach{l => println(l)}
 
@@ -338,7 +338,7 @@ object SparkBigData {
     val rdd_fm = rdd_trans.flatMap(x => x.split(" ")).map(w => (w, 1))
 
     val rdd_compte = rdd5.flatMap(x => x.split(" ")).map(m => (m, 1)).reduceByKey((x, y) => x + y)
-    rdd_compte.repartition(1).saveAsTextFile("F:\\Mes publications\\Mes publications\\Complete\\formation Spark Big Data\\Ressources\\Sources\\ComptageRDD.txt")
+    rdd_compte.repartition(1).saveAsTextFile("C:\\Users\\Aissata SANO_2\\Desktop\\AISSATA\\Aissata sano\\Sekouba FOFANA\\Documents\\FORMATION\\ComptageRDD.txt")
     rdd_compte.foreach(l => println(l))
 
     val rdd_filtered = rdd_fm.filter(x => x._1.contains("banane"))
@@ -365,7 +365,7 @@ object SparkBigData {
   def Session_Spark (env :Boolean = true) : SparkSession = {
     try {
       if (env == true) {
-        System.setProperty("hadoop.home.dir", "C:/Hadoop/")
+        System.setProperty("hadoop.home.dir", "C:/Hadoop/") // à logger
         ss = SparkSession.builder
           .master("local[*]")
           .config("spark.sql.crossJoin.enabled", "true")

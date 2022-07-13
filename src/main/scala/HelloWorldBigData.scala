@@ -10,7 +10,7 @@ import scala.io._
 
 object HelloWorldBigData  {
   /* premier programme Scala - Scala pour le Big Data */
-  val ma_var_imm : String = "Juvenal"   // variable immutable
+  val ma_var_imm : String = "Sekouba"   // variable immutable
 
   class Person (var nom : String, var prenom : String, var age : Int)
 
@@ -20,7 +20,7 @@ object HelloWorldBigData  {
 
   def main(args: Array[String]): Unit = {
 
-  //  val tt : ClassTest = new ClassTest
+  //val tt : ClassTest = new ClassTest
     //val ttt : Int = tt.comptage_package("essai")
 
     val diviseur : Double = try {
@@ -32,7 +32,7 @@ object HelloWorldBigData  {
 
     trace_appli.info(s"la valeur de votre division est de ${diviseur}")
 
-    lecture_fichier("c:/programmes/mesdonnees.txt")
+    lecture_fichier("C:\\Users\\Aissata SANO_2\\Desktop\\AISSATA\\Aissata sano\\Sekouba FOFANA\\Documents\\FORMATION\\logs_console")
 
     val nombre  = convert_entier("10")
     trace_appli.info(s"la valeur de votre nombre converti est : $nombre")

@@ -11,7 +11,7 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <kafka.clients.version>2.1.0</kafka.clients.version>
-        <log4J.api.version>2.13.3</log4J.api.version>
+        <log4j.api.version>2.17.2</log4j.api.version>
         <maven.compiler.plugin>3.8.1</maven.compiler.plugin>
         <jdk.version>1.8</jdk.version>
         <scala.langage.version>2.11.8</scala.langage.version>
@@ -24,7 +24,7 @@
         <scala.compiler.version>2.15.2</scala.compiler.version>
         <spark.streaming.kafka.version>2.3.0</spark.streaming.kafka.version>
         <spark.hive.version>2.2.0</spark.hive.version>
-        <log4j.version>2.13.3</log4j.version>
+        <log4j.core.version>2.17.2</log4j.core.version>
         <junit.version>4.12</junit.version>
         <scalatest.version>3.1.1</scalatest.version>
         <spark.projet.base.version>2.2.0_0.7.4</spark.projet.base.version>
@@ -75,15 +75,18 @@
         <dependency>
             <groupId>org.apache.logging.log4j</groupId>
             <artifactId>log4j-api</artifactId>
-            <version>${log4j.version}</version>
+            <version>${log4j.api.version}</version>
         </dependency>
+
+
 
         <!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-core -->
         <dependency>
             <groupId>org.apache.logging.log4j</groupId>
             <artifactId>log4j-core</artifactId>
-            <version>${log4j.version}</version>
+            <version>${log4j.core.version}</version>
         </dependency>
+
 
         <!-- https://mvnrepository.com/artifact/junit/junit -->
         <dependency>
@@ -133,8 +136,8 @@
         <!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-core -->
         <dependency>
             <groupId>org.apache.logging.log4j</groupId>
-            <artifactId>log4j-core</artifactId>
-            <version>${log4J.version}</version>
+            <artifactId>log4j-api</artifactId>
+            <version>${log4j.api.version}</version>
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/org.scala-lang/scala-library -->

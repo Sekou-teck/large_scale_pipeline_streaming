@@ -1,6 +1,6 @@
 
 import java.time.Duration
-
+import org.apache.log4j._
 import org.apache.spark.streaming.kafka010._
 import org.apache.kafka.clients.consumer._
 import org.apache.kafka.common.protocol
