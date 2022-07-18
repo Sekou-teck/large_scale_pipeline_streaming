@@ -57,7 +57,7 @@ object SparkBigData {
       .format("csv")
       .option("header", "true")
       .option("inferSchema", "true")
-      .load("C:\\Users\\Aissata SANO_2\\Desktop\\AISSATA\\Aissata sano\\Sekouba FOFANA\\Documents\\FORMATION\\csvs\\")
+   //   .load("C:\\Users\\Aissata SANO_2\\Desktop\\AISSATA\\Aissata sano\\Sekouba FOFANA\\Documents\\FORMATION\\csv\\")
 
     val df_gp2 = session_s.read
       .format("csv")
@@ -137,7 +137,7 @@ object SparkBigData {
       .format("com.databricks.spark.csv")
       .option("delimiter", ",")
       .option("header", "true")
-      .csv("F:\\Mes publications\\Mes publications\\Complete\\formation Spark Big Data\\Ressources\\Data frame\\2011-12-08.csv")
+      .csv("C:\\Users\\Aissata SANO_2\\Desktop\\AISSATA\\Aissata sano\\Sekouba FOFANA\\Documents\\FORMATION\\2011-12-08.csv")
 
     val df_unitedfiles = df_fichier1.union(df_fichier2.union(df_fichier3))
     // println( df_fichier3.count() + " " + df_unitedfiles.count())
