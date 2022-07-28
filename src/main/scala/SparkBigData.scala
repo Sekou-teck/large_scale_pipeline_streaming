@@ -376,7 +376,7 @@ object SparkBigData {
           .appName("Mon application Spark")
           .config("spark.serializer", "org.apache.spark.serializer.KryoSerializer")
           .config("spark.sql.crossJoin.enabled", "true")
-          .enableHiveSupport()
+         // .enableHiveSupport()
           .getOrCreate()
       }
     } catch {
