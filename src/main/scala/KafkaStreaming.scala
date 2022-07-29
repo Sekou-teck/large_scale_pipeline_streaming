@@ -67,6 +67,11 @@ object KafkaStreaming {
 
   }
 
+  /**
+   *
+   * @param KafkaBootStrapServers
+   * @return
+   */
   def getKafkaProducerParams (KafkaBootStrapServers : String) : Properties = {
     val props : Properties = new Properties()
     props.put("key.serializer", "org.apache.kafka.common.serialization.StringSerializer")
@@ -98,6 +103,12 @@ object KafkaStreaming {
 
   }
 
+  /**
+   *
+   * @param kafkaBootStrapServers
+   * @param KafkaConsumerGroupId
+   * @return
+   */
   def getKafkaConsumerParams (kafkaBootStrapServers : String, KafkaConsumerGroupId : String) : Properties = {
     val props : Properties = new Properties()
     props.put("bootstrap.servers", kafkaBootStrapServers)
@@ -110,6 +121,14 @@ object KafkaStreaming {
     return props
 
   }
+
+  /**
+   *
+   * @param kafkaBootStrapServers
+   * @param KafkaConsumerGroupId
+   * @param topic_list
+   * @return
+   */
 
   def getClientConsumerKafka (kafkaBootStrapServers : String, KafkaConsumerGroupId : String, topic_list : String) : KafkaConsumer[String, String] = {
 
